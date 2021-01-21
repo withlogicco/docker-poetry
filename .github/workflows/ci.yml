@@ -9,11 +9,12 @@ env:
   IMAGE_NAME: parisk/poetry
 
 jobs:
-  build:
+  poetry:
+    name: Poetry version
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["3.6", "3.7", "3.8", "3.9"]
+        poetry: ["1.0", "1.1", "1.1.0", "1.1.4"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -28,6 +29,60 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/parisk/poetry:latest
+          tags: ghcr.io/parisk/poetry:${{ matrix.poetry }}
           build-args: |
+            POETRY_VERSION=${{ matrix.poetry }}
+
+  poetry_and_python:
+    name: Poetry with Python version
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.6", "3.7", "3.8", "3.9"]
+        poetry: ["1.0", "1.1", "1.1.0", "1.1.4"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_PAT }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/parisk/poetry:${{ matrix.poetry }}-python-${{ matrix.python }}
+          build-args: |
+            POETRY_VERSION=${{ matrix.poetry }}
             PYTHON_VERSION=${{ matrix.python }}
+
+  poetry_and_python_and_pip:
+    name: Poetry with Python and Pip version
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.6", "3.7", "3.8", "3.9"]
+        poetry: ["1.0", "1.1", "1.1.0", "1.1.4"]
+        pip: ["2.2", "2.3"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_PAT }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/parisk/poetry:${{ matrix.poetry }}-python-${{ matrix.python }}-pip-${{ matrix.pip }}
+          build-args: |
+            POETRY_VERSION=${{ matrix.poetry }}
+            PYTHON_VERSION=${{ matrix.python }}
+            PIP_VERSION=${{ matrix.pip }}
