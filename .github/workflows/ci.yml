@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        poetry: ["1.0", "1.1", "1.1.0", "1.1.4"]
+        poetry: ["1.1", "1.1.4"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -39,7 +39,7 @@ jobs:
     strategy:
       matrix:
         python: ["3.6", "3.7", "3.8", "3.9"]
-        poetry: ["1.0", "1.1", "1.1.0", "1.1.4"]
+        poetry: ["1.1", "1.1.4"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Docker Buildx
