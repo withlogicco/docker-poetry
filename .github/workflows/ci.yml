@@ -6,15 +6,12 @@ on:
       - main
 
 env:
-  IMAGE_NAME: parisk/poetry
+  POETRY_VERSION: 1.1.6
 
 jobs:
   poetry:
     name: Poetry version
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        poetry: ["1.1", "1.1.4"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -29,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/parisk/poetry:${{ matrix.poetry }}
+          tags: ghcr.io/parisk/poetry:${{ env.POETRY_VERSION }}
           build-args: |
             POETRY_VERSION=${{ matrix.poetry }}
 
@@ -38,8 +35,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["3.6", "3.7", "3.8", "3.9"]
-        poetry: ["1.1", "1.1.4"]
+        python:
+          - "3.6"
+          - "3.6-alpine"
+          - "3.7"
+          - "3.7-alpine"
+          - "3.8"
+          - "3.8-alpine"
+          - "3.9"
+          - "3.9-alpine"
+        poetry: ["1.1.6"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -54,7 +59,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/parisk/poetry:${{ matrix.poetry }}-python-${{ matrix.python }}
+          tags: ghcr.io/parisk/poetry:${{ env.POETRY_VERSION }}-python-${{ matrix.python }}
           build-args: |
-            POETRY_VERSION=${{ matrix.poetry }}
+            POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ matrix.python }}
