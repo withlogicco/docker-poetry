@@ -37,13 +37,9 @@ jobs:
       matrix:
         python:
           - "3.6"
-          - "3.6-alpine"
           - "3.7"
-          - "3.7-alpine"
           - "3.8"
-          - "3.8-alpine"
           - "3.9"
-          - "3.9-alpine"
         poetry: ["1.1.6"]
     steps:
       - uses: actions/checkout@v2
@@ -55,7 +51,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GH_PAT }}
-      - name: Build and push
+      - name: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}
         uses: docker/build-push-action@v2
         with:
           push: true
@@ -63,3 +59,13 @@ jobs:
           build-args: |
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ matrix.python }}
+            VARIANT=debian
+      - name: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}-alpine
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/parisk/poetry:${{ env.POETRY_VERSION }}-python-${{ matrix.python }}-alpine
+          build-args: |
+            POETRY_VERSION=${{ env.POETRY_VERSION }}
+            PYTHON_VERSION=${{ matrix.python }}
+            VARIANT=alpine

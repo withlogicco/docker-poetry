@@ -1,6 +1,13 @@
 ARG PYTHON_VERSION=3.9
-FROM python:${PYTHON_VERSION}
+ARG VARIANT=debian
 
+FROM python:${PYTHON_VERSION} as debian-base
+
+FROM python:${PYTHON_VERSION}-alpine as alpine-base
+
+RUN apk add -U curl
+
+FROM ${VARIANT}-base
 ENV PYTHONUNBUFFERED=1
 
 ARG PIP_VERSION=21.1.2
