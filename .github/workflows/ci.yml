@@ -28,7 +28,7 @@ jobs:
           push: true
           tags: ghcr.io/parisk/poetry:${{ env.POETRY_VERSION }}
           build-args: |
-            POETRY_VERSION=${{ matrix.poetry }}
+            POETRY_VERSION=${{ env.POETRY_VERSION }}
 
   poetry_and_python:
     name: Poetry with Python version
