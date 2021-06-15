@@ -59,7 +59,7 @@ jobs:
           build-args: |
             POETRY_VERSION=${{ env.POETRY_VERSION }}
             PYTHON_VERSION=${{ matrix.python }}
-            VARIANT=debian
+            VARIANT=buster
       - name: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}-alpine
         uses: docker/build-push-action@v2
         with:

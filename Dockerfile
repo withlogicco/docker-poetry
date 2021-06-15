@@ -1,18 +1,25 @@
 ARG PYTHON_VERSION=3.9
-ARG VARIANT=debian
+ARG VARIANT=buster
 
-FROM python:${PYTHON_VERSION} as debian-base
+FROM python:${PYTHON_VERSION}-alpine as installation-base
 
-FROM python:${PYTHON_VERSION}-alpine as alpine-base
+WORKDIR /etc
+ARG POETRY_VERSION=1.1.6
+RUN wget https://raw.githubusercontent.com/python-poetry/poetry/${POETRY_VERSION}/get-poetry.py
+ARG POETRY_HOME=/usr/local/poetry
+ENV POETRY_HOME=${POETRY_HOME}
+RUN python /etc/get-poetry.py
 
-RUN apk add -U curl
 
-FROM ${VARIANT}-base
+FROM python:${PYTHON_VERSION}-${VARIANT}
+
 ENV PYTHONUNBUFFERED=1
 
 ARG PIP_VERSION=21.1.2
 RUN pip install --upgrade pip==${PIP_VERSION}
 
-ARG POETRY_VERSION=1.1.6
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/${POETRY_VERSION}/get-poetry.py | python - poetry==${POETRY_VERSION}
+ARG POETRY_HOME=/usr/local/poetry
+ENV POETRY_HOME=${POETRY_HOME}
+COPY --from=installation-base ${POETRY_HOME} ${POETRY_HOME}
+RUN ln -s ${POETRY_HOME}/bin/poetry /usr/local/bin/poetry
 RUN poetry config virtualenvs.create false
