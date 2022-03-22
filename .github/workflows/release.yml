@@ -23,5 +23,3 @@ jobs:
       poetry_version: ${{ env.POETRY_VERSION }}
       python_version: ${{ matrix.python_version }}
       ghcr_image_base_tag: ${{ github.event.release.tag_name }}
-    secrets:
-      github_token: ${{ secrets/GITHUB_TOKEN }}
