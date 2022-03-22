@@ -4,11 +4,15 @@ Docker Poetry is a Docker image for Python projects with dependencies managed by
 
 ## Why
 
-At LOGIC our go-to stack for web applications is Docker + Python (latest) and Django (latest LTS) with Poetry as our dependency manager.
+At <a href="https://withlogic.co/">LOGIC</a> our go-to stack for web applications is Docker + Python (latest) and Django (latest LTS) with Poetry as our dependency manager.
 
 ## How to use this
 
-Just pick the Python version and OS variant of your choice and use the following image format, based on the latest Poetry version: `ghcr.io/parisk/poetry:<poetry_version>-python-<python_version>-<os_variant>`.
+Just pick the Python version and OS variant of your choice and use the following image format, based on the latest Poetry version:
+
+```
+ghcr.io/parisk/poetry:<poetry_version>-python-<python_version>-<os_variant>
+```
 
 For example, if you want to use Poetry 1.1.13 on Python 3.10 on Debian Buster (which is the default) in your Dockerfile, you would do the following:
 
