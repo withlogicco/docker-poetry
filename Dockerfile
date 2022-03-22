@@ -23,3 +23,5 @@ ENV POETRY_HOME=${POETRY_HOME}
 COPY --from=installation-base ${POETRY_HOME} ${POETRY_HOME}
 RUN ln -s ${POETRY_HOME}/bin/poetry /usr/local/bin/poetry
 RUN poetry config virtualenvs.create false
+
+WORKDIR /usr/src/app
