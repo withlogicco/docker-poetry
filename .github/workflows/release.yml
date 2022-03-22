@@ -6,8 +6,11 @@ env:
 
 jobs:
   build:
-    name: Poetry with Python version
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/build.yml
+    with:
+      poetry_version: ${{ env.POETRY_VERSION }}
+      python_version: ${{ matrix.python_version }}
+      ghcr_image_base_tag: ${{ github.event.release.tag_name }}
     strategy:
       matrix:
         python_version:
@@ -15,8 +18,3 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
-    uses: ./.github/workflows/build.yml
-    with:
-      poetry_version: ${{ env.POETRY_VERSION }}
-      python_version: ${{ matrix.python_version }}
-      ghcr_image_base_tag: ${{ github.event.release.tag_name }}
