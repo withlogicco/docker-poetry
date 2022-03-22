@@ -1,9 +1,6 @@
 name: Release
 
-on:
-  release:
-    types: [published]
-
+on: push
 env:
   POETRY_VERSION: "1.1.13"
 
