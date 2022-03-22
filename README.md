@@ -4,28 +4,41 @@ Docker Poetry is a Docker image for Python projects with dependencies managed by
 
 ![Poetry](https://img.shields.io/badge/Poetry-1.1.13-purple) ![Python](https://img.shields.io/badge/Python-3.10%20(default)%20%7C%203.9%20%7C%203.8%20%7C%203.7-blue) ![OS](https://img.shields.io/badge/OS-Debian%20(default)%20%7C%20Slim%20%7C%20Alpine-orange
 )
+
 ## Why
 
 At <a href="https://withlogic.co/">LOGIC</a> our go-to stack for web applications is; the latest LTS Django on the latest Python using Poetry as our dependency manager in Docker. [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a core principle for us, so a public Docker image with the right Python and Poetry version is an exceptional base for new projects.
 
 ## Usage
 
-Just pick the Poetry version you wish to use and optionally also a Python version and OS.
+First, pick the Poetry version you wish to use and optionally also a Python version and OS. The image format is the following:
 
 ```
 ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>-<os_variant>
 ```
 
-For example, if you want to use Poetry 1.1.13 with Python 3.10 (default) on Debian (default) in your Dockerfile, you would do the following:
+Then, copy your `pyproject.toml` and `poetry.lock` files in the working directory of the image (`/usr/src/app`) for optimal caching and run `poetry install`. For example:
 
 ```dockerfile
 FROM ghcr.io/withlogicco/poetry:1.1.13
+
+COPY pyproject.toml poetry.lock ./
+RUN poetry install
+
+COPY ./ ./
 ```
+
+### Pick a Python version and OS variant
 
 If you do the same, with Python 3.8 on Debian Slim you would do the following:
 
 ```dockerfile
 FROM ghcr.io/withlogicco/poetry:1.1.13-python-3.8-slim
+
+COPY pyproject.toml poetry.lock ./
+RUN poetry install
+
+COPY ./ ./
 ```
 
 ## Supported versions
