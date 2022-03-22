@@ -45,8 +45,8 @@ You can check the currently supported Python versions at https://endoflife.date/
 We provide builds for three different OS variants:
 
 - Debian Buster (default): `buster`
-- Debian Slim
-- Alpine
+- Debian Slim: `slim`
+- Alpine: `alpine`
 
 ## License
 
