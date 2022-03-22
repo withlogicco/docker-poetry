@@ -17,9 +17,6 @@ on:
         type: string
         required: false
         default: latest
-    secrets:
-      github_token:
-        required: true
 
 jobs:
   build:
