@@ -13,7 +13,7 @@ At <a href="https://withlogic.co/">LOGIC</a> our go-to stack for web application
 Just pick the Poetry version you wish to use and optionally also a Python version and OS.
 
 ```
-ghcr.io/parisk/poetry:<poetry_version>-python-<python_version>-<os_variant>
+ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>-<os_variant>
 ```
 
 For example, if you want to use Poetry 1.1.13 with Python 3.10 (default) on Debian (default) in your Dockerfile, you would do the following:
