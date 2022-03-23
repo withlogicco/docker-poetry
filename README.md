@@ -2,7 +2,7 @@
 
 Docker Poetry is a Docker image for Python projects with dependencies managed by Poetry.
 
-![Poetry](https://img.shields.io/badge/Poetry-1.1.13-purple) ![Python](https://img.shields.io/badge/Python-3.10%20(default)%20%7C%203.9%20%7C%203.8%20%7C%203.7-blue) ![OS](https://img.shields.io/badge/OS-Debian%20(default)%20%7C%20Slim%20%7C%20Alpine-orange
+![Poetry](https://img.shields.io/badge/Poetry-1.1.13-purple) ![Python](https://img.shields.io/badge/Python-3.10%20(default)%20%7C%203.9%20%7C%203.8%20%7C%203.7-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim%20%7C%20Alpine-orange
 )
 
 ## Why
@@ -55,9 +55,9 @@ A build will be provided for each Python version still under maintenance and sup
 
 You can check the currently supported Python versions at https://endoflife.date/python.
 
-### OS (optional)
+### Variants (optional)
 
-We provide builds for three different OS variants:
+We provide builds for three different image variants:
 
 - Debian Buster (default): `buster`
 - Debian Slim: `slim`
