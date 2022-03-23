@@ -9,31 +9,26 @@ Docker Poetry is a Docker image for Python projects with dependencies managed by
 
 At <a href="https://withlogic.co/">LOGIC</a> our go-to stack for web applications is; the latest LTS Django on the latest Python using Poetry as our dependency manager in Docker. [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a core principle for us, so a public Docker image with the right Python and Poetry version is an exceptional base for new projects.
 
+## Tags
+
+For the simplest use case pick your Poetry version, with the default Python version (latest) and image variant (buster):
+
+```
+ghcr.io/withlogicco/poetry:<poetry_version>
+```
+
+You can be more specific by picking either a Python version, image variant or both:
+
+- Python version: `ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>`
+- Image variant: `ghcr.io/withlogicco/poetry:<poetry_version>-<image_variant>`
+- Python version and image variant: `ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>-<image_variant>`
+
 ## Usage
 
-First, pick the Poetry version you wish to use and optionally also a Python version and OS. The image format is the following:
-
-```
-ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>-<os_variant>
-```
-
-Then, copy your `pyproject.toml` and `poetry.lock` files in the working directory of the image (`/usr/src/app`) for optimal caching and run `poetry install`. For example:
+First, pick the image tag you wish to use. Then, copy your `pyproject.toml` and `poetry.lock` files in the working directory (`/usr/src/app`), for optimal caching and run `poetry install`. Example:
 
 ```dockerfile
 FROM ghcr.io/withlogicco/poetry:1.1.13
-
-COPY pyproject.toml poetry.lock ./
-RUN poetry install
-
-COPY ./ ./
-```
-
-### Pick a Python version and OS variant
-
-If you do the same, with Python 3.8 on Debian Slim you would do the following:
-
-```dockerfile
-FROM ghcr.io/withlogicco/poetry:1.1.13-python-3.8-slim
 
 COPY pyproject.toml poetry.lock ./
 RUN poetry install
