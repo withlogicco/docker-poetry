@@ -11,13 +11,13 @@ At <a href="https://withlogic.co/">LOGIC</a> our go-to stack for web application
 
 ## Tags
 
-For the simplest use case pick your Poetry version, with the default Python version (latest) and image variant (buster):
+For the simplest use case just pick your Poetry version:
 
 ```
 ghcr.io/withlogicco/poetry:<poetry_version>
 ```
 
-You can be more specific by picking either a Python version, image variant or both:
+This will use the default Python version (latest) and image variant (buster). You can be more specific by picking either a Python version, image variant or both:
 
 - Python version: `ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>`
 - Image variant: `ghcr.io/withlogicco/poetry:<poetry_version>-<image_variant>`
