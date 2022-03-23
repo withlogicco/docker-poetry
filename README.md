@@ -17,11 +17,18 @@ For the simplest use case just pick your Poetry version:
 ghcr.io/withlogicco/poetry:<poetry_version>
 ```
 
-This will use the default Python version (latest) and image variant (buster). You can be more specific by picking either a Python version, image variant or both:
+This will use the default Python version (latest) and image variant (Buster). You can be more specific by picking either a Python version, image variant or both:
 
 - Python version: `ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>`
 - Image variant: `ghcr.io/withlogicco/poetry:<poetry_version>-<image_variant>`
 - Python version and image variant: `ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>-<image_variant>`
+
+### Examples
+
+- Poetry 1.1.13: `ghcr.io/withlogicco/poetry:1.1.13`
+- Poetry 1.1.13 on Python 3.10: `ghcr.io/withlogicco/poetry:1.1.13-python-3.10`
+- Poetry 1.1.13 on Buster: `ghcr.io/withlogicco/poetry:1.1.13-buster`
+- Poetry 1.1.13 on Python 3.10 and Buster: `ghcr.io/withlogicco/poetry:1.1.13-python-3.10-buster`
 
 ## Usage
 
