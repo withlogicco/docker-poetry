@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  POETRY_VERSION: 1.1.13
+  POETRY_VERSION: 1.1.14
   GHCR_IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/poetry
 
 jobs:
@@ -28,18 +28,18 @@ jobs:
           - variant: buster
             is_default_variant: true
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker/setup-qemu-action@v1
+      - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v2
         with:
           platforms: arm64,arm
-      - uses: docker/setup-buildx-action@v1
-      - uses: docker/login-action@v1
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: "Python + Variant: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}-${{ matrix.variant }}"
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3.1.0
         with:
           push: true
           tags: ${{ env.GHCR_IMAGE_REPOSITORY }}:${{ env.POETRY_VERSION }}-python-${{ matrix.python }}-${{ matrix.variant }}
@@ -51,7 +51,7 @@ jobs:
             PYTHON_VERSION=${{ matrix.python }}
             VARIANT=${{ matrix.variant }}
       - name: "Python + Default Variant: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}"
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3.1.0
         if: matrix.is_default_variant
         with:
           push: true
@@ -62,7 +62,7 @@ jobs:
             PYTHON_VERSION=${{ matrix.python }}
             VARIANT=${{ matrix.variant }}
       - name: "Default Python + Variant: ${{ env.POETRY_VERSION }}-${{ matrix.variant }}"
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3.1.0
         if: matrix.is_default_python
         with:
           push: true
@@ -73,7 +73,7 @@ jobs:
             PYTHON_VERSION=${{ matrix.python }}
             VARIANT=${{ matrix.variant }}
       - name: "Default Python + Default Variant: ${{ env.POETRY_VERSION }}"
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3.1.0
         if: matrix.is_default_python && matrix.is_default_variant
         with:
           push: true
