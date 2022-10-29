@@ -2,7 +2,7 @@
 
 Docker Poetry is a Docker image for Python projects with dependencies managed by Poetry.
 
-![Poetry](https://img.shields.io/badge/Poetry-1.2.1-purple) ![Python](https://img.shields.io/badge/Python-3.10%20(default)%20%7C%203.9%20%7C%203.8%20%7C%203.7-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
+![Poetry](https://img.shields.io/badge/Poetry-1.2.2-purple) ![Python](https://img.shields.io/badge/Python-3.10%20(default)%20%7C%203.9%20%7C%203.8%20%7C%203.7-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
 )
 
 ## Why
@@ -25,17 +25,17 @@ This will use the default Python version (latest) and image variant (Buster). Yo
 
 ### Examples
 
-- Poetry 1.2.1: `ghcr.io/withlogicco/poetry:1.2.1`
-- Poetry 1.2.1 on Python 3.10: `ghcr.io/withlogicco/poetry:1.2.1-python-3.10`
-- Poetry 1.2.1 on Buster: `ghcr.io/withlogicco/poetry:1.2.1-buster`
-- Poetry 1.2.1 on Python 3.10 and Buster: `ghcr.io/withlogicco/poetry:1.2.1-python-3.10-buster`
+- Poetry 1.2.2: `ghcr.io/withlogicco/poetry:1.2.2`
+- Poetry 1.2.2 on Python 3.10: `ghcr.io/withlogicco/poetry:1.2.2-python-3.10`
+- Poetry 1.2.2 on Buster: `ghcr.io/withlogicco/poetry:1.2.2-buster`
+- Poetry 1.2.2 on Python 3.10 and Buster: `ghcr.io/withlogicco/poetry:1.2.2-python-3.10-buster`
 
 ## Usage
 
 First, pick the image tag you wish to use. Then, copy your `pyproject.toml` and `poetry.lock` files in the working directory (`/usr/src/app`), for optimal caching and run `poetry install`. Example:
 
 ```dockerfile
-FROM ghcr.io/withlogicco/poetry:1.2.1
+FROM ghcr.io/withlogicco/poetry:1.2.2
 
 COPY pyproject.toml poetry.lock ./
 RUN poetry install
