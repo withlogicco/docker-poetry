@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  POETRY_VERSION: 1.2.1
+  POETRY_VERSION: 1.2.2
   GHCR_IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/poetry
   PLATFORMS: linux/amd64,linux/arm64/v8
 
@@ -19,11 +19,12 @@ jobs:
           - "3.8"
           - "3.9"
           - "3.10"
+          - "3.11"
         variant:
           - buster
           - slim
         include:
-          - python: "3.10"
+          - python: "3.11"
             is_default_python: true
           - variant: buster
             is_default_variant: true
