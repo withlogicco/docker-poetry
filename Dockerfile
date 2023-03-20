@@ -9,7 +9,7 @@ ARG PIP_VERSION=22.2.2
 ARG SETUPTOOLS_VERSION=65.3.0
 RUN pip install --upgrade pip==${PIP_VERSION} setuptools==${SETUPTOOLS_VERSION}
 
-ARG POETRY_VERSION=1.4.0
+ARG POETRY_VERSION=1.4.1
 ENV POETRY_HOME=/opt/poetry\
     PATH="${PATH}:/opt/poetry/bin"
 RUN python3 -m venv ${POETRY_HOME} &&\
