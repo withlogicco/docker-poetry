@@ -68,4 +68,6 @@ This project is [MIT licensed](LICENSE).
 
 ---
 
-<center>🦄 Built with love by <a href="https://withlogic.co/">LOGIC</a>. 🦄</center>
+<p align="center">
+  <i>🦄 Built with <a href="https://withlogic.co/">LOGIC</a>. 🦄</i>
+</p>
