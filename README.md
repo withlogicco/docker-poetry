@@ -2,7 +2,7 @@
 
 Docker Poetry is a Docker image for Python projects with dependencies managed by Poetry.
 
-![Poetry](https://img.shields.io/badge/Poetry-1.6.1-purple) ![Python](https://img.shields.io/badge/Python-3.11%20(default)%20%7C%203.10%20%7C%203.9%20%7C%203.8%20%7C%203.7-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
+![Poetry](https://img.shields.io/badge/Poetry-1.6.1-purple) ![Python](https://img.shields.io/badge/Python-3.11%20(default)%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
 )
 
 ## Why
