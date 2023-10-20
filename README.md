@@ -2,7 +2,7 @@
 
 Docker Poetry is a Docker image for Python projects with dependencies managed by Poetry.
 
-![Poetry](https://img.shields.io/badge/Poetry-1.6.1-purple) ![Python](https://img.shields.io/badge/Python-3.11%20(default)%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
+![Poetry](https://img.shields.io/badge/Poetry-1.6.1-purple) ![Python](https://img.shields.io/badge/Python-3.12%20(default)%20%7C%203.11%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
 )
 
 ## Why
@@ -26,9 +26,9 @@ This will use the default Python version (latest) and image variant (Buster). Yo
 ### Examples
 
 - Poetry 1.6.1: `ghcr.io/withlogicco/poetry:1.6.1`
-- Poetry 1.6.1 on Python 3.11: `ghcr.io/withlogicco/poetry:1.6.1-python-3.11`
+- Poetry 1.6.1 on Python 3.12: `ghcr.io/withlogicco/poetry:1.6.1-python-3.12`
 - Poetry 1.6.1 on Buster: `ghcr.io/withlogicco/poetry:1.6.1-buster`
-- Poetry 1.6.1 on Python 3.11 and Buster: `ghcr.io/withlogicco/poetry:1.6.1-python-3.11-buster`
+- Poetry 1.6.1 on Python 3.12 and Buster: `ghcr.io/withlogicco/poetry:1.6.1-python-3.12-buster`
 
 ## Usage
 

@@ -19,11 +19,12 @@ jobs:
           - "3.9"
           - "3.10"
           - "3.11"
+          - "3.12"
         variant:
           - buster
           - slim
         include:
-          - python: "3.11"
+          - python: "3.12"
             is_default_python: true
           - variant: buster
             is_default_variant: true
