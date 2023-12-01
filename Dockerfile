@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION=3.12
-ARG VARIANT=buster
+ARG VARIANT=bookworm
 
 FROM python:${PYTHON_VERSION}-${VARIANT}
 
@@ -9,7 +9,7 @@ ARG PIP_VERSION=22.2.2
 ARG SETUPTOOLS_VERSION=65.3.0
 RUN pip install --upgrade pip==${PIP_VERSION} setuptools==${SETUPTOOLS_VERSION}
 
-ARG POETRY_VERSION=1.6.1
+ARG POETRY_VERSION=1.7.1
 ENV POETRY_HOME=/opt/poetry\
     PATH="${PATH}:/opt/poetry/bin"
 RUN python3 -m venv ${POETRY_HOME} &&\

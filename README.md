@@ -2,7 +2,7 @@
 
 Docker Poetry is a Docker image for Python projects with dependencies managed by Poetry.
 
-![Poetry](https://img.shields.io/badge/Poetry-1.6.1-purple) ![Python](https://img.shields.io/badge/Python-3.12%20(default)%20%7C%203.11%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Buster%20(default)%20%7C%20Slim-orange
+![Poetry](https://img.shields.io/badge/Poetry-1.7.1-purple) ![Python](https://img.shields.io/badge/Python-3.12%20(default)%20%7C%203.11%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Bookworm%20(default)%20%7C%20Slim-orange
 )
 
 ## Why
@@ -17,7 +17,7 @@ For the simplest use case just pick your Poetry version:
 ghcr.io/withlogicco/poetry:<poetry_version>
 ```
 
-This will use the default Python version (latest) and image variant (Buster). You can be more specific by picking either a Python version, image variant or both:
+This will use the default Python version (latest) and image variant (Bookworm). You can be more specific by picking either a Python version, image variant or both:
 
 - Python version: `ghcr.io/withlogicco/poetry:<poetry_version>-python-<python_version>`
 - Image variant: `ghcr.io/withlogicco/poetry:<poetry_version>-<image_variant>`
@@ -25,17 +25,17 @@ This will use the default Python version (latest) and image variant (Buster). Yo
 
 ### Examples
 
-- Poetry 1.6.1: `ghcr.io/withlogicco/poetry:1.6.1`
-- Poetry 1.6.1 on Python 3.12: `ghcr.io/withlogicco/poetry:1.6.1-python-3.12`
-- Poetry 1.6.1 on Buster: `ghcr.io/withlogicco/poetry:1.6.1-buster`
-- Poetry 1.6.1 on Python 3.12 and Buster: `ghcr.io/withlogicco/poetry:1.6.1-python-3.12-buster`
+- Poetry 1.7.1: `ghcr.io/withlogicco/poetry:1.7.1`
+- Poetry 1.7.1 on Python 3.12: `ghcr.io/withlogicco/poetry:1.7.1-python-3.12`
+- Poetry 1.7.1 on Bookworm: `ghcr.io/withlogicco/poetry:1.7.1-bookworm`
+- Poetry 1.7.1 on Python 3.12 and Bookworm: `ghcr.io/withlogicco/poetry:1.7.1-python-3.12-bookworm`
 
 ## Usage
 
 First, pick the image tag you wish to use. Then, copy your `pyproject.toml` and `poetry.lock` files in the working directory (`/usr/src/app`), for optimal caching and run `poetry install`. Example:
 
 ```dockerfile
-FROM ghcr.io/withlogicco/poetry:1.6.1
+FROM ghcr.io/withlogicco/poetry:1.7.1
 
 COPY pyproject.toml poetry.lock ./
 RUN poetry install
@@ -59,7 +59,7 @@ You can check the currently supported Python versions at https://endoflife.date/
 
 We provide builds for three different image variants:
 
-- Debian Buster (default): `buster`
+- Debian Bookworm (default): `bookworm`
 - Debian Slim: `slim`
 
 ## License
