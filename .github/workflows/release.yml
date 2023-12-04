@@ -21,12 +21,12 @@ jobs:
           - "3.11"
           - "3.12"
         variant:
-          - buster
+          - bookworm
           - slim
         include:
           - python: "3.12"
             is_default_python: true
-          - variant: buster
+          - variant: bookworm
             is_default_variant: true
     steps:
       - uses: actions/checkout@v3
