@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  POETRY_VERSION: 1.7.0
+  POETRY_VERSION: 1.7.1
   GHCR_IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/poetry
   PLATFORMS: linux/amd64,linux/arm64/v8
 
