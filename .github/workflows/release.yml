@@ -48,7 +48,7 @@ jobs:
       - name: "Python + Default Variant: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}"
         if: matrix.is_default_variant
         run: |
-          RELEASE_TAG="${BASE_RELEASE_TAG}-python-${{ matrix.python }}
+          RELEASE_TAG="${BASE_RELEASE_TAG}-python-${{ matrix.python }}"
           docker pull $GIT_SHA_TAG
           docker tag $GIT_SHA_TAG $RELEASE_TAG
           docker push $RELEASE_TAG
