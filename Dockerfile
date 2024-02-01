@@ -1,7 +1,7 @@
 ARG PYTHON_VERSION=3.12
 ARG VARIANT=bookworm
 
-FROM python:${PYTHON_VERSION}-${VARIANT}
+FROM python:${PYTHON_VERSION}-${VARIANT} as base
 
 ENV PYTHONUNBUFFERED=1
 
@@ -16,4 +16,8 @@ RUN python3 -m venv ${POETRY_HOME} &&\
     ${POETRY_HOME}/bin/pip install poetry==${POETRY_VERSION} &&\
     poetry config virtualenvs.create false
 
+FROM base as test
+COPY ./tests/tests.py /usr/src/app/tests.py
+
+FROM base
 WORKDIR /usr/src/app

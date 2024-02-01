@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  POETRY_VERSION: 1.7.1
+  GHCR_IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/poetry
+  PLATFORMS: linux/amd64,linux/arm64/v8
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python:
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+        variant:
+          - bookworm
+          - slim
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: .
+          push: false
+          tags: test-image
+          target: test
+          build-args: POETRY_VERSION=${{ env.POETRY_VERSION }}
+      - name: Run Tests in Docker
+        run: |
+          docker run --rm \
+          -e POETRY_VERSION=${{ env.POETRY_VERSION }} \
+          test-image python3 /usr/src/app/tests.py
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up multiplatform builds
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: ${{ env.PLATFORMS }}
+      - name: Set up buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5.1.0
+        with:
+          context: .
+          push: true
+          tags: ${{ env.GHCR_IMAGE_REPOSITORY }}:${{ github.sha }}-${{ matrix.python }}-${{ matrix.variant }}
+          platforms: ${{ env.PLATFORMS }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            POETRY_VERSION=${{ env.POETRY_VERSION }}
+            PYTHON_VERSION=${{ matrix.python }}
+            VARIANT=${{ matrix.variant }}
