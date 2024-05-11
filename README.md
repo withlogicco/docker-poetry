@@ -2,7 +2,7 @@
 
 Docker Poetry is a Docker image for Python projects with dependencies managed by Poetry.
 
-![Poetry](https://img.shields.io/badge/Poetry-1.8.2-purple) ![Python](https://img.shields.io/badge/Python-3.12%20(default)%20%7C%203.11%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Bookworm%20(default)%20%7C%20Slim-orange
+![Poetry](https://img.shields.io/badge/Poetry-1.8.3-purple) ![Python](https://img.shields.io/badge/Python-3.12%20(default)%20%7C%203.11%20%7C%203.10%20%7C%203.9%20%7C%203.8-blue) ![Variants](https://img.shields.io/badge/Variants-Bookworm%20(default)%20%7C%20Slim-orange
 )
 
 ## Why
@@ -25,17 +25,17 @@ This will use the default Python version (latest) and image variant (Bookworm). 
 
 ### Examples
 
-- Poetry 1.8.2: `ghcr.io/withlogicco/poetry:1.8.2`
-- Poetry 1.8.2 on Python 3.12: `ghcr.io/withlogicco/poetry:1.8.2-python-3.12`
-- Poetry 1.8.2 on Bookworm: `ghcr.io/withlogicco/poetry:1.8.2-bookworm`
-- Poetry 1.8.2 on Python 3.12 and Bookworm: `ghcr.io/withlogicco/poetry:1.8.2-python-3.12-bookworm`
+- Poetry 1.8.3: `ghcr.io/withlogicco/poetry:1.8.3`
+- Poetry 1.8.3 on Python 3.12: `ghcr.io/withlogicco/poetry:1.8.3-python-3.12`
+- Poetry 1.8.3 on Bookworm: `ghcr.io/withlogicco/poetry:1.8.3-bookworm`
+- Poetry 1.8.3 on Python 3.12 and Bookworm: `ghcr.io/withlogicco/poetry:1.8.3-python-3.12-bookworm`
 
 ## Usage
 
 First, pick the image tag you wish to use. Then, copy your `pyproject.toml` and `poetry.lock` files in the working directory (`/usr/src/app`), for optimal caching and run `poetry install`. Example:
 
 ```dockerfile
-FROM ghcr.io/withlogicco/poetry:1.8.2
+FROM ghcr.io/withlogicco/poetry:1.8.3
 
 COPY pyproject.toml poetry.lock ./
 RUN poetry install
