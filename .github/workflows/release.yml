@@ -28,8 +28,8 @@ jobs:
           - variant: bookworm
             is_default_variant: true
     steps:
-      - uses: actions/checkout@v4.1.1
-      - uses: docker/login-action@v3
+      - uses: actions/checkout@v4.1.4
+      - uses: docker/login-action@v3.1.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -42,26 +42,17 @@ jobs:
       - name: "Python + Variant: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}-${{ matrix.variant }}"
         run: |
           RELEASE_TAG="${BASE_RELEASE_TAG}-python-${{ matrix.python }}-${{ matrix.variant }}"
-          docker pull $GIT_SHA_TAG
-          docker tag $GIT_SHA_TAG $RELEASE_TAG
-          docker push $RELEASE_TAG
+          docker buildx imagetools create --tag $RELEASE_TAG $GIT_SHA_TAG
       - name: "Python + Default Variant: ${{ env.POETRY_VERSION }}-python-${{ matrix.python }}"
         if: matrix.is_default_variant
         run: |
           RELEASE_TAG="${BASE_RELEASE_TAG}-python-${{ matrix.python }}"
-          docker pull $GIT_SHA_TAG
-          docker tag $GIT_SHA_TAG $RELEASE_TAG
-          docker push $RELEASE_TAG
+          docker buildx imagetools create --tag $RELEASE_TAG $GIT_SHA_TAG
       - name: "Default Python + Variant: ${{ env.POETRY_VERSION }}-${{ matrix.variant }}"
         if: matrix.is_default_python
         run: |
           RELEASE_TAG="${BASE_RELEASE_TAG}-${{ matrix.variant }}"
-          docker pull $GIT_SHA_TAG
-          docker tag $GIT_SHA_TAG $RELEASE_TAG
-          docker push $RELEASE_TAG
+          docker buildx imagetools create --tag $RELEASE_TAG $GIT_SHA_TAG
       - name: "Default Python + Default Variant: ${{ env.POETRY_VERSION }}"
         if: matrix.is_default_python && matrix.is_default_variant
-        run: |
-          docker pull $GIT_SHA_TAG
-          docker tag $GIT_SHA_TAG $BASE_RELEASE_TAG
-          docker push $BASE_RELEASE_TAG
+        run: docker buildx imagetools create --tag $BASE_RELEASE_TAG $GIT_SHA_TAG
