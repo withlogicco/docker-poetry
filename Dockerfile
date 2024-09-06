@@ -5,9 +5,8 @@ FROM python:${PYTHON_VERSION}-${VARIANT} as base
 
 ENV PYTHONUNBUFFERED=1
 
-ARG PIP_VERSION=22.2.2
-ARG SETUPTOOLS_VERSION=65.3.0
-RUN pip install --upgrade pip==${PIP_VERSION} setuptools==${SETUPTOOLS_VERSION}
+RUN python -m ensurepip --upgrade
+RUN pip install --upgrade setuptools
 
 ARG POETRY_VERSION=1.8.3
 ENV POETRY_HOME=/opt/poetry\
