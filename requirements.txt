@@ -1,0 +1,2 @@
+pip==24.2
+setuptools==75.1.0

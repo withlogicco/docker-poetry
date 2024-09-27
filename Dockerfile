@@ -5,8 +5,10 @@ FROM python:${PYTHON_VERSION}-${VARIANT} as base
 
 ENV PYTHONUNBUFFERED=1
 
-RUN python -m ensurepip --upgrade
-RUN pip install --upgrade setuptools
+COPY ./requirements.txt ./
+
+RUN python -m ensurepip
+RUN pip install -r requirements.txt && rm requirements.txt
 
 ARG POETRY_VERSION=1.8.3
 ENV POETRY_HOME=/opt/poetry\
