@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1
 COPY ./requirements.txt ./
 
 RUN python -m ensurepip
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && rm requirements.txt
 
 ARG POETRY_VERSION=1.8.3
 ENV POETRY_HOME=/opt/poetry\
