@@ -14,8 +14,8 @@ updates:
       prefix-development: chore
       include: scope
   
-  # Fetch and update latest `poetry`
-  - package-ecosystem: poetry
+  # Fetch and update latest `python` packages
+  - package-ecosystem: pip
     directory: '/'
     schedule:
       interval: daily
